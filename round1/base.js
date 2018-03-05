@@ -2,6 +2,8 @@ var currentMin = document.getElementById('currentMinutes');
 var currentSec = document.getElementById('currentSeconds');
 var totalMin = document.getElementById('totalMinutes');
 var totalSec = document.getElementById('totalSeconds');
+var s = document.getElementsByTagName('span');
+
 
 var start = document.getElementById('startButton');
 var reset = document.getElementById('resetButton');
@@ -41,9 +43,9 @@ async function countup() {
   while (remainingSeconds != 0) {
     if(killFlag == 1 || pauseFlag == 1){
       completeFlag = 0;
-      break;
+      break ;
     }
-    await sleep(80);
+    await sleep(1000);
     cSec += 1;
     if(cSec == 60){
       cMin += 1;
@@ -62,11 +64,21 @@ async function countup() {
       currentSec.innerHTML = cSec;
     }
     remainingSeconds -= 1;
+    if(remainingSeconds < 20 && remainingSeconds % 2 == 0){
+      s["0"].style.color = "red";
+      s["1"].style.color = "red";
+    }
+    else {
+      s["0"].style.color = "black";
+      s["1"].style.color = "black";
+    }
   }
   if(completeFlag == 1){
     start.innerHTML = "Start!";
     alert("Time Completed!");
     clearAll();
+    s["0"].style.color = "black";
+    s["1"].style.color = "black";
   }
 }
 
@@ -98,8 +110,11 @@ function startPauseFunction(){
 
 function resetFunction(){
   killFlag = 1;
-  clearAll();
   console.log("Timer Reset!");
   start.innerHTML = "Start!";
-  pauseFlag = 0;
+  pauseFlag = 1;
+  completeFlag = 0;
+  s["0"].style.color = "black";
+  s["1"].style.color = "black";
+  clearAll();
 }
