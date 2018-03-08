@@ -16,7 +16,9 @@ var tog;
 var resetTwo = document.getElementById('resetButtonTwo');
 var startSix = document.getElementById('startButtonSix');
 var resetSix = document.getElementById('resetButtonSix');
-
+var sound = document.getElementById('alert');
+sound.load();
+console.log("Audio Track Loaded!");
 
 resetTwo.addEventListener('click', resetTimerTwo);
 startSix.addEventListener('click', startTimerSix);
@@ -60,10 +62,11 @@ function countup() {
   cMinSix.innerHTML = stylize(parseInt(counterSix / 60));
   if (counterTwo == toTotalSeconds(tMinTwo.innerHTML , tSecTwo.innerHTML)) {
     resetTimerTwo();
-    //Add Audio Alert
+    sound.play();
   }
   if (counterSix == toTotalSeconds(tMinSix.innerHTML , tSecSix.innerHTML)) {
     clearInterval(tog);
+    sound.play();
     alert("Total Time Elapsed!");
   }
 }
@@ -88,7 +91,7 @@ function resetTimerSix() {
 
 function startTimerSix() {
   if (startTimerFlag == 1) {
-    tog = setInterval(function() {countup()}, 1000);
+    tog = setInterval(function() {countup()}, 80);
     console.log("Both Timers Started!");
     startTimerFlag = 0;
   }
