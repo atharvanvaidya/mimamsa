@@ -6,6 +6,7 @@ var start = document.getElementById('startButton');
 var reset = document.getElementById('resetButton');
 var inputFlag = 0;
 var counter = 0;
+var completeFlag = 0;
 var arr = [];
 startTimerFlag = 1;
 start.addEventListener('click' , onRoundStart);
@@ -48,6 +49,7 @@ function countup() {
     document.removeEventListener("keypress" , onPress);
     inputFlag = 0;
     clearInterval(tog);
+    completeFlag = 1;
     emptyArray();
   }
   counter += 1;
@@ -55,8 +57,8 @@ function countup() {
   currentMin.innerHTML = stylize(parseInt(counter / 60));
   if (counter == toTotalSeconds(totalMin.innerHTML , totalSec.innerHTML)) {
     clearInterval(tog);
-    alert("Time Completed!");
-    clearAll();
+    alert("Time Completed! Press Reset Button to Start Again!");
+    //clearAll();
     emptyArray();
     counter = 0;
     inputFlag = 0;
@@ -69,9 +71,17 @@ function onRoundStart() {
     inputFlag = 1;
     document.addEventListener("keypress" , onPress);
     startTimerFlag = 0;
+    start.innerHTML = "Pause!";
   }
   else {
-    console.log("Timer Already Running!");
+    if (completeFlag == 0) {
+      clearInterval(tog);
+      start.innerHTML = "Start!";
+      startTimerFlag = 1;
+    }
+    else {
+      startTimerFlag = 0;
+    }
   }
 }
 
@@ -123,6 +133,7 @@ function onReset() {
   inputFlag = 0;
   counter = 0;
   startTimerFlag = 1;
+  start.innerHTML = "Start!";
   var ul = document.getElementById('list');
   if (ul) {
     while (ul.firstChild) {
