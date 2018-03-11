@@ -6,33 +6,44 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <span id="currentMinutesTwo">00</span>
-    :
-    <span id="currentSecondsTwo">00</span>
-    /
-    <span id="totalMinutesTwo">02</span>
-    :
-    <span id="totalSecondsTwo">00</span>
+    <header>
+      MIMAMSA 2018
+    </header>
+    <section>
+      <span id="currentMinutesTwo">00</span>
+      <span>:</span>
+      <span id="currentSecondsTwo">00</span>
+      <span>/</span>
+      <span id="totalMinutesTwo">02</span>
+      <span>:</span>
+      <span id="totalSecondsTwo">00</span>
 
-    <br>
-    <br>
-    <button type="button" id="resetButtonTwo">Reset</button>
+      <br>
+      <br>
+      <div id="timerTwo">
+        <button type="button" id="resetButtonTwo">Reset</button>
+      </div>
 
-    <br>
-    <br>
-    <br>
+    </section>
 
-    <span id="currentMinutesSix">00</span>
-    :
-    <span id="currentSecondsSix">00</span>
-    /
-    <span id="totalMinutesSix">06</span>
-    :
-    <span id="totalSecondsSix">00</span>
-    <br>
-    <br>
-    <button type="button" id="startButtonSix">Start</button>
-    <button type="button" id="resetButtonSix">Reset</button>
+    <section>
+      <span id="currentMinutesSix">00</span>
+      <span>:</span>
+      <span id="currentSecondsSix">00</span>
+      <span>/</span>
+      <span id="totalMinutesSix">06</span>
+      <span>:</span>
+      <span id="totalSecondsSix">00</span>
+      <br>
+      <br>
+      <div class="timerSix">
+        <button type="button" class="buttonsTimerSix" id="startButtonSix">Start</button>
+      </div>
+      <div class="timerSix">
+        <button type="button" class="buttonsTimerSix" id="resetButtonSix">Reset</button>
+      </div>
+      </section>
+
     <audio id='alert'>
       <source src="alert.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
