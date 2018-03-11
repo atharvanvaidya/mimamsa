@@ -6,20 +6,21 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <span id="currentMinutes">00</span>
-    :
-    <span id="currentSeconds">00</span>
-    /
-    <input id="totalMinutes" type="text" size="2" maxlength="2" value="00">
-    :
-    <input id="totalSeconds" type="text" size="2" maxlength="2" value="00">
-    <br>
-    <br>
-    <button id="startButton" type="button" name="button">Start!</button>
-    <button id="resetButton" type="button" name="button">Reset!</button>
-    <br>
-    <br>
-    <p id="counter"></p>
+    <section id="timerSpace">
+      <span id="currentMinutes">00</span>
+      <font>:</font>
+      <span id="currentSeconds">00</span>
+      <font>/</font>
+      <input id="totalMinutes" class="ip" type="text" size="2" maxlength="2" value="00">
+      <font>:</font>
+      <input id="totalSeconds" class="ip" type="text" size="2" maxlength="2" value="00">
+    </section>
+    <section id="buttonSpace">
+      <button id="startButton" class="buttons" type="button" name="button">Start!</button>
+      <button id="resetButton" class="buttons" type="button" name="button">Reset!</button>
+    </section>
+
+    <!-- <p id="counter"></p> -->
     <script src="base.js" charset="utf-8"></script>
   </body>
 </html>
