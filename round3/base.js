@@ -2,8 +2,12 @@ var currentMin = document.getElementById('currentMinutes');
 var currentSec = document.getElementById('currentSeconds');
 var totalMin = document.getElementById('totalMinutes');
 var totalSec = document.getElementById('totalSeconds');
+var buzzerSec = document.getElementById('buzzSeconds');
 var start = document.getElementById('startButton');
 var reset = document.getElementById('resetButton');
+var resetBuzzer = document.getElementById('resetBuzzerButton');
+var buzz = 20;
+var buzzFlag = 0;
 var inputFlag = 0;
 var counter = 0;
 var completeFlag = 0;
@@ -14,7 +18,9 @@ reset.addEventListener('click' , onReset);
 document.addEventListener("keypress", onPress);
 var sound = document.getElementById('alert');
 sound.load();
+resetBuzzer.addEventListener('click' , onBuzzerReset);
 
+//Add 0 when the timer is less than 10
 function stylize(number) {
   if(number < 10){
     var finalString = "0"+number;
@@ -29,21 +35,26 @@ function emptyArray() {
   arr = [];
 }
 
+//Resets the Timer to Defaut Value
 function clearAll() {
   currentMin.innerHTML = "00";
   currentSec.innerHTML = "00";
   totalMin.innerHTML = "02";
   totalSec.innerHTML = "00";
+  buzzerSec.innerHTML = "20";
 }
 
+//Convert Total Seconds to MM:SS
 function toMMSS(totalSeconds) {
   return (stylize(parseInt(totalSeconds / 60)) + ":" + stylize(totalSeconds % 60));
 }
 
+//Convert MM:SS to Total Seconds
 function toTotalSeconds(minutes , seconds) {
   return parseInt(parseInt(minutes) * 60 + parseInt(seconds));
 }
 
+//Main Counter Function
 function countup() {
   if (arr.length == 4) {
     document.removeEventListener("keypress" , onPress);
@@ -55,6 +66,14 @@ function countup() {
   counter += 1;
   currentSec.innerHTML = stylize(counter % 60);
   currentMin.innerHTML = stylize(parseInt(counter / 60));
+  if (buzzFlag == 1) {
+    buzzerSec.innerHTML = stylize(buzz);
+    buzz -= 1;
+    if (buzz == -1) {
+      buzzFlag = 0;
+      buzz = 20;
+    }
+  }
   if (counter == toTotalSeconds(totalMin.innerHTML , totalSec.innerHTML)) {
     clearInterval(tog);
     alert("Time Completed! Press Reset Button to Start Again!");
@@ -65,6 +84,7 @@ function countup() {
   }
 }
 
+//Executes when Start Button is Pressed
 function onRoundStart() {
   if (startTimerFlag == 1) {
     tog = setInterval(function() {countup()}, 80);
@@ -85,10 +105,12 @@ function onRoundStart() {
   }
 }
 
+//Pushes A/B/C/W to array
 function pushLetter(letter) {
   if (arr.includes(letter) == false) {
     if (arr.length == 0) {
       //Play Sound
+      buzzFlag = 1;
       sound.play();
       console.log("Song ");
     }
@@ -101,6 +123,7 @@ function pushLetter(letter) {
   }
 }
 
+//Executes when A,B,C,W is Pressed
 function onPress(event) {
   if (inputFlag == 1) {
     console.log("Event Started");
@@ -118,14 +141,15 @@ function onPress(event) {
         pushLetter("c");
         break;
       case "d":
-        console.log("D Pressed");
-        pushLetter("d");
+        console.log("W Pressed");
+        pushLetter("w");
         break;
     }
     console.log(arr);
   }
 }
 
+//Executes when Timer Reset Button is Pressed
 function onReset() {
   clearAll();
   clearInterval(tog);
@@ -140,4 +164,11 @@ function onReset() {
       ul.removeChild(ul.firstChild);
     }
   }
+}
+
+//Executes when Buzzer Reset Button is Pressed
+function onBuzzerReset() {
+  buzzFlag = 0;
+  buzzerSec.innerHTML = "20";
+  buzz = 20;
 }
