@@ -1,3 +1,7 @@
+body{
+  background: black;
+}
+
 div#timerTwo{
   padding-left: 25%;
   padding-right: 35%;
@@ -12,6 +16,12 @@ header{
   text-align: center;
 }
 
+span{
+  user-select: none;
+  -moz-user-select: none;
+  color: white;
+}
+
 div.timerSix{
   float: left;
   width: 26%;
@@ -21,10 +31,11 @@ div.timerSix{
 }
 
 button#resetButtonTwo,button.buttonsTimerSix{
-  width: 100%;
+  width: 80%;
   padding-top: 20%;
   padding-bottom: 20%;
   border-radius: 60%;
+  color: green;
 }
 
 
