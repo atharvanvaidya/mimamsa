@@ -1,13 +1,13 @@
 body{
-  background-color: #71f7bd;
+  background-color: black;
 }
 
 font{
-  color: black;
+  color: white;
   font-size: 1040%;
 }
 span{
-  color: black;
+  color: white;
   font-size: 1040%;
 }
 
@@ -28,18 +28,20 @@ span{
   background-color: inherit;
   text-align: center;
   border-color: white;
-  color: black;
+  color: white;
   font-size: 900%;
   padding: 0%;
   width: 20%;
 }
 
-
+#startButton,#resetButton{
+  background-color: black;
+}
 
 #buttonSpace{
   float: left;
   width: 100%;
-  background-color: green;
+  background-color: black;
 }
 
 .buttons{

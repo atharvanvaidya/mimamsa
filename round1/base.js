@@ -7,6 +7,9 @@ var s = document.getElementsByTagName('span');
 
 var start = document.getElementById('startButton');
 var reset = document.getElementById('resetButton');
+var sound = document.getElementById('alert');
+sound.load();
+console.log("Audio Track Loaded!");
 
 var killFlag = 0;
 var pauseFlag = 0;
@@ -40,7 +43,7 @@ async function countup() {
   if(tSec < 10){
     totalSec.value = "0" + tSec;
   }
-  while (remainingSeconds != 0) {
+  while (remainingSeconds > -300) {
     if(killFlag == 1 || pauseFlag == 1){
       completeFlag = 0;
       break ;
@@ -64,21 +67,32 @@ async function countup() {
       currentSec.innerHTML = cSec;
     }
     remainingSeconds -= 1;
-    if(remainingSeconds < 20 && remainingSeconds % 2 == 0){
-      s["0"].style.color = "red";
-      s["1"].style.color = "red";
+    if (remainingSeconds > 0) {
+      if(remainingSeconds < 20 && remainingSeconds % 2 == 0){
+        s["0"].style.color = "red";
+        s["1"].style.color = "red";
+      }
+      else {
+        s["0"].style.color = "white";
+        s["1"].style.color = "white";
+      }
+    }
+    else if (remainingSeconds == 0) {
+      sound.play();
     }
     else {
-      s["0"].style.color = "black";
-      s["1"].style.color = "black";
+      s["0"].style.color = "red";
+      s["1"].style.color = "red";
     }
   }
   if(completeFlag == 1){
     start.innerHTML = "Start!";
-    alert("Time Completed!");
-    clearAll();
-    s["0"].style.color = "black";
-    s["1"].style.color = "black";
+    //alert("Time Completed!");
+
+    //remainingSeconds = 300;
+    //clearAll();
+    s["0"].style.color = "white";
+    s["1"].style.color = "white";
   }
 }
 
@@ -114,7 +128,7 @@ function resetFunction(){
   start.innerHTML = "Start!";
   pauseFlag = 1;
   completeFlag = 0;
-  s["0"].style.color = "black";
-  s["1"].style.color = "black";
+  s["0"].style.color = "white";
+  s["1"].style.color = "white";
   clearAll();
 }
