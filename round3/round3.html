@@ -6,30 +6,45 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <span id="currentMinutes">00</span>
-    :
-    <span id="currentSeconds">00</span>
-    /
-    <span id="totalMinutes">02</span>
-    :
-    <span id="totalSeconds">00</span>
+    <section id="timerButtons">
+      <button type="button" id="startButton">Start!</button>
+      <br>
+      <button type="button" id="resetButton">Reset!</button>
+    </section>
+    <section id="mainTimer">
+      <span class="mainTimerFont" id="currentMinutes">00</span>
+      <span class="mainTimerFont">:</span>
+      <span class="mainTimerFont" id="currentSeconds">00</span>
+      <span class="mainTimerFont">/</span>
+      <span class="mainTimerFont" id="totalMinutes">02</span>
+      <span class="mainTimerFont">:</span>
+      <span class="mainTimerFont" id="totalSeconds">00</span>
+    </section>
     <br>
     <br>
-    <button type="button" id="startButton">Start!</button>
-    <button type="button" id="resetButton">Reset!</button>
-    <br>
-    <br>
-    <span id="buzzSeconds">20</span>
-    <br>
-    <br>
-    <button type="button" id="resetBuzzerButton">Reset!</button>
+    <section id="buzzerTimer">
+      <span id="buzzSeconds">20</span>
+      <br>
+      <button type="button" id="resetBuzzerButton">Reset!</button>
+    </section>
     <audio id='alert'>
       <source src="alert.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
-    <ul id="list">
+    <section id="groupList">
+      <ul id="list">
+        <!--
+        <li>
+          <section id="individualTeam">
+            <span id="groupName">A</span>
+            <br>
+            <span id="groupTime">00:00</span>
+          </section>
+        </li>
+      -->
+      </ul>
+    </section>
 
-    </ul>
     <script src="base.js" charset="utf-8"></script>
   </body>
 </html>

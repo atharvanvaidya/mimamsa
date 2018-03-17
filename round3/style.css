@@ -1,3 +1,59 @@
+#timerButtons{
+  float: left;
+  width: 18%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  margin-left: 1.5%;
+}
+
+body{
+  background-color: black;
+}
+
+span{
+  color: white;
+}
+
+#mainTimer{
+  width: 96%;
+  margin-top: 8%;
+  margin-bottom: 8%;
+}
+
+.mainTimerFont{
+  font-size: 1200%;
+}
+
+#buzzerTimer{
+  float: left;
+  width: 18%;
+}
+
+#buzzSeconds{
+  font-size: 1100%;
+  margin-left: 5%;
+}
+
+#startButton,#resetButton,#resetBuzzerButton{
+  width: 70%;
+  height: 100%;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  background-color:black;
+  color:green;
+  font-size: 200%;
+}
+
 ul {
   list-style-type: none;
+}
+
+#individualTeam{
+  float: left;
+  margin-left: 1%;
+  margin-right: 1%;
+  width: 18%;
+  font-size: 500%;
+  color: white;
+  text-align: center;
 }

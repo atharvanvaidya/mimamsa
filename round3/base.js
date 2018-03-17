@@ -11,6 +11,7 @@ var buzzFlag = 0;
 var inputFlag = 0;
 var counter = 0;
 var completeFlag = 0;
+var mainTimerStartFlag = 1;
 var arr = [];
 startTimerFlag = 1;
 start.addEventListener('click' , onRoundStart);
@@ -59,24 +60,29 @@ function countup() {
   if (arr.length == 4) {
     document.removeEventListener("keypress" , onPress);
     inputFlag = 0;
-    clearInterval(tog);
+    mainTimerStartFlag = 0;
+    //clearInterval(tog);
     completeFlag = 1;
     emptyArray();
   }
-  counter += 1;
-  currentSec.innerHTML = stylize(counter % 60);
-  currentMin.innerHTML = stylize(parseInt(counter / 60));
+  if (mainTimerStartFlag == 1) {
+    counter += 1;
+    currentSec.innerHTML = stylize(counter % 60);
+    currentMin.innerHTML = stylize(parseInt(counter / 60));
+  }
   if (buzzFlag == 1) {
     buzzerSec.innerHTML = stylize(buzz);
     buzz -= 1;
     if (buzz == -1) {
+      sound.play();
       buzzFlag = 0;
       buzz = 20;
     }
   }
   if (counter == toTotalSeconds(totalMin.innerHTML , totalSec.innerHTML)) {
     clearInterval(tog);
-    alert("Time Completed! Press Reset Button to Start Again!");
+    //alert("Time Completed! Press Reset Button to Start Again!");
+    sound.play();
     //clearAll();
     emptyArray();
     counter = 0;
@@ -87,15 +93,17 @@ function countup() {
 //Executes when Start Button is Pressed
 function onRoundStart() {
   if (startTimerFlag == 1) {
-    tog = setInterval(function() {countup()}, 80);
+    mainTimerStartFlag = 1;
+    tog = setInterval(function() {countup()}, 1000);
     inputFlag = 1;
-    document.addEventListener("keypress" , onPress);
     startTimerFlag = 0;
+    document.addEventListener("keypress" , onPress);
     start.innerHTML = "Pause!";
   }
   else {
     if (completeFlag == 0) {
       clearInterval(tog);
+      document.removeEventListener("keypress" , onPress);
       start.innerHTML = "Start!";
       startTimerFlag = 1;
     }
@@ -115,10 +123,27 @@ function pushLetter(letter) {
       console.log("Song ");
     }
     arr.push(letter);
+    //var msg = letter.toUpperCase() + " " + toMMSS(counter);
+    currentTime = toMMSS(counter);
     var ul = document.getElementById("list");
     var li = document.createElement("li");
-    li.appendChild(document.createTextNode(letter));
+    /*li.appendChild(document.createTextNode(msg));
     li.setAttribute("id", "element"); // added line
+    ul.appendChild(li);*/
+    var sec = document.createElement("section");
+    sec.setAttribute("id" , "individualTeam");
+    var group = document.createElement("span");
+    group.setAttribute("id" , "groupName");
+    var time = document.createElement("span");
+    time.setAttribute("id" , "groupTime");
+    var br = document.createElement("br");
+    var gr = group.appendChild(document.createTextNode(letter.toUpperCase()));
+
+    var t = time.appendChild(document.createTextNode(currentTime));
+    sec.appendChild(gr);
+    sec.appendChild(br);
+    sec.appendChild(t);
+    li.appendChild(sec);
     ul.appendChild(li);
   }
 }
@@ -140,9 +165,9 @@ function onPress(event) {
         console.log("C Pressed");
         pushLetter("c");
         break;
-      case "d":
-        console.log("W Pressed");
-        pushLetter("w");
+      case "w":
+        console.log("D Pressed");
+        pushLetter("D");
         break;
     }
     console.log(arr);
@@ -157,6 +182,8 @@ function onReset() {
   inputFlag = 0;
   counter = 0;
   startTimerFlag = 1;
+  buzz = 20;
+  buzzFlag = 0;
   start.innerHTML = "Start!";
   var ul = document.getElementById('list');
   if (ul) {
@@ -168,7 +195,14 @@ function onReset() {
 
 //Executes when Buzzer Reset Button is Pressed
 function onBuzzerReset() {
-  buzzFlag = 0;
+  buzzFlag = 1;
+  if(arr.length == 4){
+    mainTimerStartFlag = 0;
+  }
+  else{
+    mainTimerStartFlag = 1;
+  }
+  //mainTimerStartFlag = 0;
   buzzerSec.innerHTML = "20";
   buzz = 20;
 }
