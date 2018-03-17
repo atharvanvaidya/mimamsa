@@ -36,12 +36,14 @@ button#resetButtonTwo,button.buttonsTimerSix{
   padding-bottom: 20%;
   border-radius: 60%;
   color: green;
+  background-color:black;
+  font-size:200%;
 }
 
 
 span{
   font-family: sans-serif;
-  font-size: 1000%;
+  font-size: 1200%;
 }
 
 section{

@@ -122,7 +122,7 @@ function resetTimerSix() {
 //Starts BOTH Timers
 function startTimerSix() {
   if (startTimerFlag == 1) {
-    tog = setInterval(function() {countup()}, 80);
+    tog = setInterval(function() {countup()}, 1000);
     console.log("Both Timers Started!");
     startTimerFlag = 0;
   }
