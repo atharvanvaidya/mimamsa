@@ -80,12 +80,18 @@ function countup() {
     }
   }
   if (counter == toTotalSeconds(totalMin.innerHTML , totalSec.innerHTML)) {
-    clearInterval(tog);
-    //alert("Time Completed! Press Reset Button to Start Again!");
-    sound.play();
-    //clearAll();
-    emptyArray();
-    counter = 0;
+    if (buzzFlag == 0) {
+      clearInterval(tog);
+      sound.play();
+      emptyArray();
+      counter = 0;
+      //alert("Time Completed! Press Reset Button to Start Again!");
+    }
+    if (mainTimerStartFlag == 1) {
+      mainTimerStartFlag = 0;
+      sound.play();
+    }
+
     inputFlag = 0;
   }
 }
@@ -94,7 +100,7 @@ function countup() {
 function onRoundStart() {
   if (startTimerFlag == 1) {
     mainTimerStartFlag = 1;
-    tog = setInterval(function() {countup()}, 1000);
+    tog = setInterval(function() {countup()}, 300);
     inputFlag = 1;
     startTimerFlag = 0;
     document.addEventListener("keypress" , onPress);
