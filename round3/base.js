@@ -204,7 +204,7 @@ function onReset() {
 //Executes when Buzzer Reset Button is Pressed
 function onBuzzerReset() {
   buzzFlag = 1;
-  if (arr.length == 4) {
+  if (completeFlag == 1) {
     mainTimerStartFlag = 0;
   }
   else {
