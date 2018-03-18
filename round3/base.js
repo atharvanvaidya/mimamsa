@@ -204,7 +204,12 @@ function onReset() {
 //Executes when Buzzer Reset Button is Pressed
 function onBuzzerReset() {
   buzzFlag = 1;
-  mainTimerStartFlag = 0;
+  if (arr.length == 4) {
+    mainTimerStartFlag = 0;
+  }
+  else {
+    mainTimerStartFlag = 1;
+  }
 
   buzzerSec.innerHTML = "20";
   buzz = 20;
