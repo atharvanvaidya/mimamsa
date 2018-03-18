@@ -100,7 +100,7 @@ function countup() {
 function onRoundStart() {
   if (startTimerFlag == 1) {
     mainTimerStartFlag = 1;
-    tog = setInterval(function() {countup()}, 300);
+    tog = setInterval(function() {countup()}, 1000);
     inputFlag = 1;
     startTimerFlag = 0;
     document.addEventListener("keypress" , onPress);
