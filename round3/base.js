@@ -81,10 +81,12 @@ function countup() {
   }
   if (counter == toTotalSeconds(totalMin.innerHTML , totalSec.innerHTML)) {
     if (buzzFlag == 0) {
-      clearInterval(tog);
+      //clearInterval(tog);
       sound.play();
       emptyArray();
       counter = 0;
+      buzz = 20;
+      //buzzFlag = 1;
       //alert("Time Completed! Press Reset Button to Start Again!");
     }
     if (mainTimerStartFlag == 1) {
@@ -202,12 +204,7 @@ function onReset() {
 //Executes when Buzzer Reset Button is Pressed
 function onBuzzerReset() {
   buzzFlag = 1;
-  if (arr.length == 4) {
-    mainTimerStartFlag = 0;
-  }
-  else {
-    mainTimerStartFlag = 1;
-  }
+  mainTimerStartFlag = 0;
 
   buzzerSec.innerHTML = "20";
   buzz = 20;
